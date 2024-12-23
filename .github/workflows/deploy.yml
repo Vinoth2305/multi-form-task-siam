@@ -3,10 +3,10 @@ name: Deploy React App with Vite
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to main branch
+      - main  
   pull_request:
     branches:
-      - main  # Trigger deployment on pull request to main branch
+      - main  
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Adjust to your preferred Node version
+          node-version: '18' 
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1
         with:
-          publish-dir: ./dist  # Path to the build directory (Vite default)
+          publish-dir: ./dist  
           production-branch: main
           netlify-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           site-id: ${{ secrets.NETLIFY_SITE_ID }}

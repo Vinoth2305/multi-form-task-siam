@@ -39,7 +39,7 @@ function Confirmation() {
       localStorage.setItem("users", JSON.stringify(usersArray));
       // dispatc(progressBarStatus(3));
       navigate("/summary");
-      // showToast("Submitted successfully", "success");
+
       // setTimeout(() => {
       //   window.location.reload();
       // }, 2000);

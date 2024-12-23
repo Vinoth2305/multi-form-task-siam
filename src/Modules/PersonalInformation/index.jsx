@@ -86,6 +86,7 @@ function PersonalInformation() {
       }
     }
   };
+  console.log(state);
 
   return (
     <div>

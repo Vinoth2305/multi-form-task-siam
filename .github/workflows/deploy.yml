@@ -3,39 +3,31 @@ name: Deploy
 on:
   push:
     branches:
-      - main  # Change this to your default branch (e.g., `main` or `master`)
-  pull_request:
-    branches:
-      - main  # Trigger on pull request events to main
+      - main  # Trigger on push to main branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the code
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Step 2: Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Set the Node.js version you need
+        node-version: '16'
 
-    # Step 3: Install dependencies
     - name: Install dependencies
       run: npm install
 
-    # Step 4: Build the Vite app
     - name: Build the Vite app
-      run: npm run build  # This will run `vite build` to generate the `dist/` folder
+      run: npm run build
 
-    # Step 5: Deploy to Vercel
-    - name: Deploy to Vercel
-      uses: amondnet/vercel-action@v20
+    - name: Deploy to Netlify
+      uses: netlify/actions/cli@v3
       with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Set your Vercel token as a secret in GitHub
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}  # Set your Vercel organization ID as a secret in GitHub
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}  # Set your Vercel project ID as a secret in GitHub
-        vercel-branch: main  # Deploy the `main` branch to Vercel
+        publish-dir: './dist'  # Netlify deploys from the dist directory
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

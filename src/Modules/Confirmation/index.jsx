@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, CheckBox, showToast } from "../../Component";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { progressBarStatus } from "../../Redux/Action";
 
 function Confirmation() {
   const navigate = useNavigate();
   const [terms, setTerms] = useState(false);
   const [info, setInfo] = useState([]);
+  const dispatch = useDispatch();
 
   const handlePrevious = () => {
     navigate("/skills-and-tech");
@@ -33,6 +35,7 @@ function Confirmation() {
     if (!terms) {
       showToast("terms and condition should be vaild", "info");
     } else {
+      dispatch(progressBarStatus(3));
       let usersArray = JSON.parse(localStorage.getItem("users")) || [];
 
       usersArray.push(mergedObj);

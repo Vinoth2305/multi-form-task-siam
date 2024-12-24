@@ -4,3 +4,4 @@ export * from "./SkillsAndTechStack";
 export * from "./Summary";
 export * from "./CandidateList";
 export * from "./Navbar";
+export * from "./PageNotFound";

@@ -1,3 +1,10 @@
-export default {
-  base: "/multi-form-task-siam/", // Add the subdirectory path here
-};
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/multi-form-task-siam/",
+  server: {
+    historyApiFallback: true,
+  },
+});
